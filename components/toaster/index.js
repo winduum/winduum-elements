@@ -1,8 +1,8 @@
-import { DefaultElement } from '../../index.js'
+import { WebuumElement } from 'webuum'
 
-export class Toaster extends DefaultElement {
+export class Toaster extends WebuumElement {
   static values = {
-    $close: Object,
+    $close: null,
   }
 
   async close() {

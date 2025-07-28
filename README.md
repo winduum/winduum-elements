@@ -16,5 +16,6 @@ Ready to use components and utilities for Web
 {
   "@newlogic-digital/utils-js": "^1",
   "winduum": "^2"
+  "webuum": "^1"
 }
 ```

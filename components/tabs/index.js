@@ -1,9 +1,9 @@
-import { DefaultElement } from '../../index.js'
+import { WebuumElement } from 'webuum'
 
-export class Tabs extends DefaultElement {
+export class Tabs extends WebuumElement {
   static parts = {
-    $tab: '',
-    $tabpanel: '',
+    $tab: null,
+    $tabpanel: null,
   }
 
   async toggle({ currentTarget }) {

@@ -1,14 +1,14 @@
-import { DefaultElement } from '../../index.js'
+import { WebuumElement } from 'webuum'
 
-export class Carousel extends DefaultElement {
+export class Carousel extends WebuumElement {
   static parts = {
-    $content: '',
-    $counterMin: '',
-    $counterMax: '',
-    $pagination: '',
-    $progress: '',
-    $prev: '',
-    $next: '',
+    $content: null,
+    $counterMin: null,
+    $counterMax: null,
+    $pagination: null,
+    $progress: null,
+    $prev: null,
+    $next: null,
   }
 
   async connectedCallback() {

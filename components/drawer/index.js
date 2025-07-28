@@ -1,8 +1,8 @@
-import { superConnect } from '../../index.js'
+import { initializeController } from 'webuum'
 
 export class Drawer extends HTMLDialogElement {
   static parts = {
-    $content: '',
+    $content: null,
   }
 
   static values = {
@@ -12,7 +12,7 @@ export class Drawer extends HTMLDialogElement {
 
   constructor() {
     super()
-    superConnect(this)
+    initializeController(this)
   }
 
   connectedCallback() {

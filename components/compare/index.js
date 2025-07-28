@@ -1,9 +1,8 @@
-import { DefaultElement } from '../../index.js'
+import { WebuumElement } from 'webuum'
 
-// TODO parts
-export class Compare extends DefaultElement {
+export class Compare extends WebuumElement {
   static parts = {
-    $input: '',
+    $input: null,
   }
 
   connectedCallback() {

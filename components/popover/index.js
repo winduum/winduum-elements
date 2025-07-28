@@ -1,6 +1,7 @@
-import { DefaultElement, supportsAnchor } from '../../index.js'
+import { supportsAnchor } from '../../index.js'
+import { WebuumElement } from 'webuum'
 
-export class Popover extends DefaultElement {
+export class Popover extends WebuumElement {
   $open = false
 
   static values = {

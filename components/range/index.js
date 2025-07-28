@@ -1,9 +1,9 @@
-import { DefaultElement } from '../../index.js'
+import { WebuumElement } from 'webuum'
 
-export class Range extends DefaultElement {
+export class Range extends WebuumElement {
   static parts = {
-    $start: '',
-    $end: '',
+    $start: null,
+    $end: null,
   }
 
   async setValue({ currentTarget, params }) {

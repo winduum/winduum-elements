@@ -1,10 +1,8 @@
-import { DefaultElement } from '../../index.js'
+import { WebuumElement } from 'webuum'
 
-export class Button extends DefaultElement {
+export class Button extends WebuumElement {
   static values = {
-    $loading: {
-      default: true,
-    },
+    $loading: true,
   }
 
   $loadingAttribute = 'data-loading'

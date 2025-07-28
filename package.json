@@ -9,7 +9,8 @@
   },
   "dependencies": {
     "@newlogic-digital/utils-js": "^1.2.0",
-    "winduum": "^2.2.9"
+    "winduum": "^2.2.9",
+    "webuum": "^0.0.2"
   },
   "devDependencies": {
     "@eslint/js": "^9.32.0",

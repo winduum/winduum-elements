@@ -1,7 +1,8 @@
 import { dispatchCustomEvent } from '@newlogic-digital/utils-js'
 import { DefaultElement } from '../../index.js'
+import { WebuumElement } from 'webuum'
 
-export class Control extends DefaultElement {
+export class Control extends WebuumElement {
   stepUp() {
     this.querySelector('input').stepUp()
     dispatchCustomEvent(this.querySelector('input'))
