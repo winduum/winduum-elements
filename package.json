@@ -1,0 +1,33 @@
+{
+  "name": "winduum-elements",
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "eslint": "eslint",
+    "eslint-fix": "eslint --fix",
+    "publish-next": "npm publish --tag next"
+  },
+  "dependencies": {
+    "@newlogic-digital/utils-js": "^1.2.0",
+    "winduum": "^2.2.9"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.32.0",
+    "@stylistic/eslint-plugin": "^5.2.2",
+    "eslint": "^9.32.0"
+  },
+  "files": [
+    "index.js",
+    "components",
+    "utilities"
+  ],
+  "exports": {
+    "./components/*": "./components/*",
+    "./utilities/*": "./utilities/*",
+    ".": "./index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/winduum/winduum-stimulus.git"
+  }
+}
