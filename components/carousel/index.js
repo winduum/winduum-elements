@@ -11,8 +11,19 @@ export class Carousel extends WebuumElement {
     $next: null,
   }
 
+  $paginationItemContent = '<div class="dot size-2 bg-body-secondary transition data-active:bg-accent cursor-pointer"></div>'
+
   async connectedCallback() {
     await this.scroll()
+
+    if (this.$pagination) {
+      const { paginationCarousel } = await import('winduum/src/components/carousel/index.js')
+
+      paginationCarousel(this.$content, {
+        element: this.$pagination,
+        itemContent: this.$paginationItemContent,
+      })
+    }
   }
 
   async scroll() {

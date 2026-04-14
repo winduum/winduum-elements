@@ -1,5 +1,5 @@
-import { supportsAnchor } from '../../index.js'
 import { WebuumElement } from 'webuum'
+import { supportsAnchoredContainer, supportsAnchor } from 'winduum/src/common.js'
 
 export class Popover extends WebuumElement {
   $open = false
@@ -17,7 +17,7 @@ export class Popover extends WebuumElement {
   }
 
   async showPopover({ source }) {
-    if (this.$autoUpdate || !supportsAnchor) {
+    if ((this.$autoUpdate && !supportsAnchoredContainer) || !supportsAnchor) {
       const { autoUpdatePopover } = await import('winduum/src/components/popover/index.js')
 
       this.$cleanup = await autoUpdatePopover(source, this, this.$placement, this.$autoUpdate)

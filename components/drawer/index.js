@@ -85,6 +85,8 @@ export class Drawer extends HTMLDialogElement {
     }[this.$placement] ?? []
 
     await closeDrawer(this, distance, direction)
+
+    if (this.$triggerElement) this.$triggerElement.ariaExpanded = false
   }
 
   // TODO is needed?
@@ -93,6 +95,19 @@ export class Drawer extends HTMLDialogElement {
 
     if (!this.$content.contains(target) && !this.$content.isEqualNode(target)) {
       await this.close()
+    }
+  }
+
+  async toggle({ currentTarget }) {
+    this.$triggerElement = currentTarget
+
+    if (this.element.inert) {
+      currentTarget.ariaExpanded = true
+      this.show()
+    }
+    else {
+      currentTarget.ariaExpanded = false
+      this.close()
     }
   }
 }
