@@ -1,6 +1,6 @@
-import { Controller } from '@hotwired/stimulus'
+import { WebuumElement } from 'webuum'
 
-export class Image extends Controller {
+export class Image extends WebuumElement {
   connectedCallback() {
     const element = this.querySelector('img, video, iframe')
 
