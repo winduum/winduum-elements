@@ -1,24 +1,22 @@
 import { WebuumElement } from 'webuum'
 
 export class Toast extends WebuumElement {
-  static props = {
-    $close: null,
-    $show: null,
+  $showOptions
+  $closeOptions
+
+  connectedCallback() {
+    this.showToast()
   }
 
-  connect() {
-    this.show()
-  }
-
-  async show() {
+  async showToast() {
     const { showToast } = await import('winduum/src/components/toast/index.js')
 
-    await showToast(this, this.$show)
+    await showToast(this, this.$showOptions)
   }
 
-  async close() {
+  async closeToast() {
     const { closeToast } = await import('winduum/src/components/toast/index.js')
 
-    await closeToast(this, this.$close)
+    await closeToast(this, this.$closeOptions)
   }
 }

@@ -1,39 +1,42 @@
 import { WebuumElement } from 'webuum'
 
 export class Compare extends WebuumElement {
+  $keyboardStep
+  $mouseStep
+  $positionOptions
+
   static parts = {
     $input: null,
   }
 
   connectedCallback() {
-    this.eventListeners('addEventListener')
+    this.$controller = new AbortController()
+    const { signal } = this.$controller
+
+    this.$input.addEventListener('input', this.setPosition, { signal })
+    this.$input.addEventListener('keydown', this.setKeyboardStep, { signal })
+    this.$input.addEventListener('mousedown', this.setMouseStep, { signal })
   }
 
   disconnectedCallback() {
-    this.eventListeners('removeEventListener')
-  }
-
-  eventListeners(method) {
-    this.$input[method]('input', this.setPosition)
-    this.$input[method]('keydown', this.setKeyboardStep)
-    this.$input[method]('mousedown', this.setMouseStep)
+    this.$controller?.abort()
   }
 
   async setPosition({ currentTarget }) {
     const { setPosition } = await import('winduum/src/components/compare/index.js')
 
-    setPosition(currentTarget, arguments[0]?.params)
+    setPosition(currentTarget, this.$positionOptions)
   }
 
   async setKeyboardStep({ key, currentTarget }) {
     const { setKeyboardStep } = await import('winduum/src/components/compare/index.js')
 
-    setKeyboardStep(currentTarget, key, arguments[0]?.params?.step)
+    setKeyboardStep(currentTarget, key, this.$keyboardStep)
   }
 
   async setMouseStep({ currentTarget }) {
     const { setMouseStep } = await import('winduum/src/components/compare/index.js')
 
-    setMouseStep(currentTarget, arguments[0]?.params?.step)
+    setMouseStep(currentTarget, this.$mouseStep)
   }
 }
