@@ -5,109 +5,42 @@ export class Drawer extends HTMLDialogElement {
     $content: null,
   }
 
-  static values = {
+  static props = {
     $placement: 'left',
-    $dialog: 'modal',
+    $modal: true,
   }
 
   constructor() {
     super()
     initializeController(this)
+    this.$controller = new AbortController()
   }
 
-  connectedCallback() {
-    this.addEventListener('scroll', this.scroll)
-    this.addEventListener('click', this.dismiss)
-  }
+  async partConnectedCallback(name) {
+    if (name === '$content') {
+      const { drawerObserver, drawerEvents } = await import('winduum/src/components/drawer/index.js')
+      const { signal } = this.$controller
 
-  async scroll({ target }) {
-    const { scrollDrawer } = await import('winduum/src/components/drawer/index.js')
+      drawerEvents(this, this.$content, this.$placement, signal)
 
-    const bottomTop = {
-      snapClass: 'snap-y snap-mandatory',
-      scrollSize: target.scrollHeight - target.clientHeight,
-      scrollDirection: target.scrollTop,
-    }
-
-    const rightBottom = {
-      scrollClose: 0,
-      opacityRatio: 0,
-    }
-
-    const placement = {
-      right: {
-        ...rightBottom,
-        scrollOpen: target.scrollWidth - target.clientWidth,
-      },
-      bottom: {
-        ...rightBottom,
-        ...bottomTop,
-        scrollOpen: target.scrollHeight - target.clientHeight,
-      },
-      top: {
-        ...bottomTop,
-        scrollOpen: 0,
-        scrollClose: target.scrollHeight - target.clientHeight,
-      },
-    }
-
-    await scrollDrawer(target, placement[this.$placement])
-  }
-
-  async show() {
-    const { showDrawer, scrollInitDrawer } = await import('winduum/src/components/drawer/index.js')
-
-    if (this.$dialog === 'modal') {
-      super.showModal()
-    }
-    else if (this.$dialog === 'non-modal') {
-      super.show()
-    }
-
-    const [distance, distanceClosed, direction] = {
-      right: [this.scrollWidth, 0, 'left'],
-      bottom: [this.scrollHeight, 0, 'top'],
-      top: [0, this.scrollHeight, 'top'],
-    }[this.$placement] ?? []
-
-    await scrollInitDrawer(this, distanceClosed, direction)
-
-    await showDrawer(this, distance, direction)
-  }
-
-  async close() {
-    const { closeDrawer } = await import('winduum/src/components/drawer/index.js')
-
-    const [distance, direction] = {
-      right: [0, 'left'],
-      bottom: [0, 'top'],
-      top: [this.scrollHeight, 'top'],
-    }[this.$placement] ?? []
-
-    await closeDrawer(this, distance, direction)
-
-    if (this.$triggerElement) this.$triggerElement.ariaExpanded = false
-  }
-
-  // TODO is needed?
-  async dismiss({ target }) {
-    if (!this.open) return
-
-    if (!this.$content.contains(target) && !this.$content.isEqualNode(target)) {
-      await this.close()
+      this.$observer = drawerObserver(this, this.$placement)
+      this.$observer.observe(this.$content)
     }
   }
 
-  async toggle({ currentTarget }) {
-    this.$triggerElement = currentTarget
+  partDisconnectedCallback(name) {
+    if (name === '$content') {
+      this.$observer?.disconnect()
+      this.$controller?.abort()
+    }
+  }
 
-    if (this.element.inert) {
-      currentTarget.ariaExpanded = true
-      this.show()
-    }
-    else {
-      currentTarget.ariaExpanded = false
-      this.close()
-    }
+  async showModal() {
+    const { showDrawer } = await import('winduum/src/components/drawer/index.js')
+
+    if (this.$modal) super.showModal()
+    else super.show()
+
+    showDrawer(this.firstElementChild, this.$placement)
   }
 }
