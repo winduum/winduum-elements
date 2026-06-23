@@ -2,7 +2,7 @@ import { validateForm } from 'winduum/src/components/form/index.js'
 import { initializeController } from 'webuum'
 
 export class Form extends HTMLFormElement {
-  static values = {
+  static props = {
     $validate: null,
   }
 

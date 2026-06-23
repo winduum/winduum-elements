@@ -4,7 +4,7 @@ import { supportsAnchoredContainer, supportsAnchor } from 'winduum/src/common.js
 export class Popover extends WebuumElement {
   $open = false
 
-  static values = {
+  static props = {
     $autoUpdate: null,
     $placement: null,
   }

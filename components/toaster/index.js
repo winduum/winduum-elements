@@ -1,7 +1,7 @@
 import { WebuumElement } from 'webuum'
 
 export class Toaster extends WebuumElement {
-  static values = {
+  static props = {
     $close: null,
   }
 

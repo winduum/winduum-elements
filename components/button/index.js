@@ -1,7 +1,7 @@
 import { WebuumElement } from 'webuum'
 
 export class Button extends WebuumElement {
-  static values = {
+  static props = {
     $loading: true,
   }
 
