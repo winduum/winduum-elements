@@ -3,73 +3,80 @@ import { WebuumElement } from 'webuum'
 export class Carousel extends WebuumElement {
   static parts = {
     $content: null,
-    $counterMin: null,
-    $counterMax: null,
-    $pagination: null,
-    $progress: null,
+    $markerGroup: null,
+    $marker: null,
     $prev: null,
     $next: null,
   }
 
-  $paginationItemContent = '<div class="dot size-2 bg-body-secondary transition data-active:bg-accent cursor-pointer"></div>'
-
-  async connectedCallback() {
-    await this.scroll()
-
-    if (this.$pagination) {
-      const { paginationCarousel } = await import('winduum/src/components/carousel/index.js')
-
-      paginationCarousel(this.$content, {
-        element: this.$pagination,
-        itemContent: this.$paginationItemContent,
-      })
-    }
+  static props = {
+    $vertical: false,
   }
 
-  async scroll() {
-    const { scrollCarousel } = await import('winduum/src/components/carousel/index.js')
+  async connectedCallback() {
+    const { scrollToMarker, setSnappedAttribute, toggleScrollState } = await import('winduum/src/components/carousel/index.js')
 
-    this.toggleScrollAttributes()
+    this.$controller = new AbortController()
 
-    scrollCarousel(this.$content, {
-      counterMinElement: this.$counterMin,
-      counterMaxElement: this.$counterMax,
-      progressElement: this.$progress,
-      pagination: {
-        element: this.$pagination,
-      },
+    const { signal } = this.$controller
+
+    this.$marker.forEach(element => element.addEventListener('click', (event) => {
+      event.preventDefault()
+
+      scrollToMarker(this.$content, event.target, this.$markerGroup, this.$vertical
+        ? {
+            block: 'start',
+          }
+        : {},
+      )
+    }))
+
+    this.$content.addEventListener('scrollsnapchanging', (event) => {
+      setSnappedAttribute(this.$content, event.snapTargetInline ?? event.snapTargetBlock, this.$markerGroup)
+    }, { signal })
+
+    this.$content.addEventListener('scroll', () => {
+      const vertical = this.$vertical
+        ? {
+            scrollStart: this.$content.scrollTop <= 0,
+            scrollEnd: this.$content.scrollTop >= this.$content.scrollHeight - this.$content.clientHeight,
+            scrollNone: !(this.$content.scrollHeight - this.$content.clientHeight),
+          }
+        : {}
+
+      toggleScrollState(this.$content, {
+        prevElement: this.$prev,
+        nextElement: this.$next,
+        ...vertical,
+      })
+    }, { signal })
+  }
+
+  disconnectedCallback() {
+    this.$controller?.abort()
+  }
+
+  async $scroll(direction) {
+    const { scrollBy } = await import('winduum/src/components/carousel/index.js')
+
+    const vertical = this.$vertical
+      ? {
+          distance: this.$content.clientHeight * 0.85,
+          position: 'top',
+        }
+      : {}
+
+    scrollBy(this.$content, {
+      direction,
+      ...vertical,
     })
   }
 
-  toggleScrollAttributes() {
-    const scrollStart = this.$content.scrollLeft <= 0
-    const scrollEnd = this.$content.scrollLeft >= this.$content.scrollWidth - this.$content.clientWidth
-    const scrollNone = this.$content.scrollWidth - this.$content.clientWidth === 0
-
-    if (this.$prev && this.$next) {
-      this.$prev.disabled = scrollStart
-      this.$next.disabled = scrollEnd
-    }
-
-    this.toggleAttribute('data-scroll-start', scrollStart)
-    this.toggleAttribute('data-scroll-end', scrollEnd)
-    this.toggleAttribute('data-scroll-none', scrollNone)
-  }
-
   scrollPrev() {
-    this.$content.scroll({ left: this.$content.scrollLeft - this.$content.children[0].offsetWidth })
+    this.$scroll(-1)
   }
 
   scrollNext() {
-    this.$content.scroll({ left: this.$content.scrollLeft + this.$content.children[0].offsetWidth })
-  }
-
-  async scrollTo({ source }) {
-    const { scrollTo } = await import('winduum/src/components/carousel/index.js')
-
-    const siblingElements = [...source.parentElement.children]
-    const index = siblingElements.indexOf(source)
-
-    scrollTo(this.$content, index)
+    this.$scroll(1)
   }
 }

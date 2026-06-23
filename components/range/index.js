@@ -23,23 +23,23 @@ export class Range extends WebuumElement {
     }, params.track ?? 'start')
   }
 
-  // TODO
-  async startTargetConnected() {
-    await this.setValue({
-      currentTarget: this.$start,
-      params: {
-        track: 'start',
-      },
-    })
-  }
+  partConnectedCallback(name) {
+    if (name === '$start') {
+      this.setValue({
+        currentTarget: this.$start,
+        params: {
+          track: 'start',
+        },
+      })
+    }
 
-  // TODO
-  async endTargetConnected() {
-    await this.setValue({
-      currentTarget: this.$end,
-      params: {
-        track: 'end',
-      },
-    })
+    if (name === '$end') {
+      this.setValue({
+        currentTarget: this.$end,
+        params: {
+          track: 'end',
+        },
+      })
+    }
   }
 }
