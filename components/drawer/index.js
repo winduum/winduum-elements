@@ -35,12 +35,22 @@ export class Drawer extends HTMLDialogElement {
     }
   }
 
-  async showModal() {
+  async showModal({ source }) {
     const { showDrawer } = await import('winduum/src/components/drawer/index.js')
 
+    this.$triggerElement = source
+
+    if (this.open) return
     if (this.$modal) super.showModal()
     else super.show()
 
+    source.ariaExpanded = true
     showDrawer(this.firstElementChild, this.$placement)
+  }
+
+  close() {
+    super.close()
+
+    if (this.$triggerElement) this.$triggerElement.ariaExpanded = false
   }
 }
