@@ -6,7 +6,7 @@ export class Image extends WebuumElement {
 
     if (!element) return
 
-    const removeSkeleton = () => this.element.classList.remove('before:skeleton')
+    const removeSkeleton = () => this.classList.remove('before:skeleton')
 
     if (element.complete) removeSkeleton()
     else if (element instanceof HTMLVideoElement) element.oncanplay = removeSkeleton
