@@ -1,6 +1,6 @@
 {
   "name": "winduum-elements",
-  "version": "0.0.6",
+  "version": "0.0.8",
   "type": "module",
   "scripts": {
     "eslint": "eslint",

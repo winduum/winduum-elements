@@ -10,40 +10,33 @@ export class Range extends WebuumElement {
     this.$controller = new AbortController()
     const { signal } = this.$controller
 
-    this.addEventListener('input', this.setValue, { signal })
+    this.addEventListener('input', this.setValue.bind(this), { signal })
   }
 
   disconnectedCallback() {
     this.$controller?.abort()
   }
 
-  async setValue({ currentTarget }) {
-    const { setValue, setOutputValue, setTrackProperty } = await import('winduum/src/components/range/index.js')
+  async setValue({ target }) {
+    const { setValue, setOutputValue } = await import('winduum/src/components/range/index.js')
 
-    setValue(currentTarget, {
-      track: currentTarget.dataset.track ?? 'start',
+    setValue(target, {
+      track: target.dataset.track ?? 'start',
     })
 
-    setOutputValue(currentTarget, window[currentTarget.getAttribute('aria-labelledby')])
-
-    setTrackProperty({
-      element: this.parentElement,
-      value: currentTarget.value,
-      min: Number(currentTarget.min) || 0,
-      max: Number(currentTarget.max) || 100,
-    }, currentTarget.dataset.track ?? 'start')
+    setOutputValue(target, window[target.getAttribute('aria-labelledby')])
   }
 
   partConnectedCallback(name) {
     if (name === '$start') {
       this.setValue({
-        currentTarget: this.$start,
+        target: this.$start,
       })
     }
 
     if (name === '$end') {
       this.setValue({
-        currentTarget: this.$end,
+        target: this.$end,
       })
     }
   }

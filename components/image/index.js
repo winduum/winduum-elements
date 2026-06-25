@@ -1,6 +1,7 @@
-import { WebuumElement } from 'webuum'
-
-export class Image extends WebuumElement {
+/**
+ * @param {CustomElementConstructor} Element
+ */
+export const Image = Element => class extends Element {
   connectedCallback() {
     const element = this.querySelector('img, video, iframe')
 

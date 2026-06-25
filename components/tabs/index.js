@@ -6,10 +6,10 @@ export class Tabs extends WebuumElement {
     $tabpanel: null,
   }
 
-  async toggle({ currentTarget }) {
+  async toggle({ source }) {
     const { toggleTab } = await import('winduum/src/components/tabs/index.js')
 
-    toggleTab(currentTarget, {
+    toggleTab(source, {
       tabElements: this.$tab,
       tabPanelElements: this.$tabpanel,
     })
