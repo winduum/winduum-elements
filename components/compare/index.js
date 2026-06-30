@@ -21,16 +21,11 @@ export class Compare extends WebuumElement {
   }
 
   connectedCallback() {
-    this.$controller = new AbortController()
-    const { signal } = this.$controller
+    const signal = this.$signal
 
     this.$input.addEventListener('input', this.setPosition, { signal })
     this.$input.addEventListener('keydown', this.setKeyboardStep, { signal })
     this.$input.addEventListener('mousedown', this.setMouseStep, { signal })
-  }
-
-  disconnectedCallback() {
-    this.$controller?.abort()
   }
 
   async setPosition({ currentTarget }) {

@@ -11,20 +11,13 @@ export class Control extends WebuumElement {
   connectedCallback() {
     validateField(this, { validate: false })
 
-    this.$controler = new AbortController()
-    const { signal } = this.$controler
-
     this.addEventListener('change', () => {
       const telCountryCode = this.querySelector('[autocomplete="tel-country-code"]')
 
       if (telCountryCode) telCountryCode.dataset.value = telCountryCode.value
 
       validateField(this, this.$validateFieldOptions)
-    }, { signal })
-  }
-
-  disconnectedCallback() {
-    this.$controler?.abort()
+    }, { signal: this.$signal })
   }
 
   stepUp() {

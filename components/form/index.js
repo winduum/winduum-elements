@@ -1,5 +1,5 @@
 import { validateForm } from 'winduum/src/components/form/index.js'
-import { initializeController } from 'webuum'
+import { defineElement } from 'webuum'
 
 export class Form extends HTMLFormElement {
   /**
@@ -9,15 +9,12 @@ export class Form extends HTMLFormElement {
 
   constructor() {
     super()
-    initializeController(this)
+    defineElement(this)
   }
 
   connectedCallback() {
-    this.$controller = new AbortController()
-    const { signal } = this.$controller
-
     this.noValidate = true
-    this.addEventListener('submit', this.validateForm, { signal })
+    this.addEventListener('submit', this.validateForm, { signal: this.$signal })
   }
 
   disconnectedCallback() {

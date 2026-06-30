@@ -10,17 +10,10 @@ export class Popover extends WebuumElement {
   }
 
   connectedCallback() {
-    this.$controller = new AbortController()
-    const { signal } = this.$controller
-
     this.addEventListener('toggle', (event) => {
       this.$open = event.newState === 'open'
       if (this.$source.ariaExpanded) this.$source.ariaExpanded = this.$open
-    }, { signal })
-  }
-
-  disconnectedCallback() {
-    this.$controller?.abort()
+    }, { signal: this.$signal })
   }
 
   async showPopover({ source }) {

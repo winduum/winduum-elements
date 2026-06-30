@@ -16,9 +16,7 @@ export class Carousel extends WebuumElement {
   async connectedCallback() {
     const { scrollToMarker, setSnappedAttribute, toggleScrollState } = await import('winduum/src/components/carousel/index.js')
 
-    this.$controller = new AbortController()
-
-    const { signal } = this.$controller
+    const signal = this.$signal
 
     this.$marker.forEach((element) => {
       element.addEventListener('click', (event) => {
@@ -39,10 +37,6 @@ export class Carousel extends WebuumElement {
         vertical: this.$vertical,
       })
     }, { signal })
-  }
-
-  disconnectedCallback() {
-    this.$controller?.abort()
   }
 
   async $scroll(direction) {

@@ -7,14 +7,7 @@ export class Range extends WebuumElement {
   }
 
   connectedCallback() {
-    this.$controller = new AbortController()
-    const { signal } = this.$controller
-
-    this.addEventListener('input', this.setValue.bind(this), { signal })
-  }
-
-  disconnectedCallback() {
-    this.$controller?.abort()
+    this.addEventListener('input', this.setValue.bind(this), { signal: this.$signal })
   }
 
   async setValue({ target }) {

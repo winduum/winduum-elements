@@ -1,4 +1,4 @@
-import { initializeController } from 'webuum'
+import { defineElement } from 'webuum'
 
 export class Drawer extends HTMLDialogElement {
   static parts = {
@@ -12,16 +12,14 @@ export class Drawer extends HTMLDialogElement {
 
   constructor() {
     super()
-    initializeController(this)
-    this.$controller = new AbortController()
+    defineElement(this)
   }
 
   async partConnectedCallback(name) {
     if (name === '$content') {
       const { drawerObserver, drawerEvents } = await import('winduum/src/components/drawer/index.js')
-      const { signal } = this.$controller
 
-      drawerEvents(this, this.$content, this.$placement, signal)
+      drawerEvents(this, this.$content, this.$placement, this.$signal)
 
       this.$observer = drawerObserver(this, this.$placement)
       this.$observer.observe(this.$content)

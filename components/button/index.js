@@ -1,4 +1,4 @@
-import { initializeController } from 'webuum'
+import { defineElement } from 'webuum'
 
 /**
  * @param {CustomElementConstructor} Element
@@ -19,7 +19,7 @@ export const Button = Element =>
     constructor() {
       super()
 
-      initializeController(this)
+      defineElement(this)
     }
 
     connectedCallback() {
