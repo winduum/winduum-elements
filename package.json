@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@newlogic-digital/utils-js": "^1.2.0",
-    "winduum": "^3.0.0-next.3",
+    "winduum": "^3.0.0-next.4",
     "webuum": "^0.1.0"
   },
   "devDependencies": {

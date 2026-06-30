@@ -1,8 +1,19 @@
 import { WebuumElement } from 'webuum'
 
 export class Compare extends WebuumElement {
+  /**
+   * @type {string}
+   */
   $keyboardStep
+
+  /**
+   * @type {string}
+   */
   $mouseStep
+
+  /**
+   * @type {import('winduum/src/components/compare/index.d.ts').SetPositionOptions}
+   */
   $positionOptions
 
   static parts = {

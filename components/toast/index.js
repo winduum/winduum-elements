@@ -1,8 +1,8 @@
 import { WebuumElement } from 'webuum'
 
 /**
- * @typedef {import('winduum/src/components/toast/index.js').ShowToastOptions} ShowOptions
- * @typedef {import('winduum/src/components/toast/index.js').CloseToastOptions} CloseOptions
+ * @typedef {import('winduum/src/components/toast/index.d.ts').ShowToastOptions} ShowOptions
+ * @typedef {import('winduum/src/components/toast/index.d.ts').CloseToastOptions} CloseOptions
  */
 
 export class Toast extends WebuumElement {

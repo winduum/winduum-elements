@@ -2,6 +2,9 @@ import { validateForm } from 'winduum/src/components/form/index.js'
 import { initializeController } from 'webuum'
 
 export class Form extends HTMLFormElement {
+  /**
+   * @type {import('winduum/src/components/form/index.d.ts').ValidateFormOptions}
+   */
   $validateFormOptions
 
   constructor() {
