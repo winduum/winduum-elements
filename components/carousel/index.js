@@ -18,7 +18,7 @@ export class Carousel extends WebuumElement {
 
     const signal = this.$signal
 
-    this.$marker.forEach((element) => {
+    this.$marker?.forEach((element) => {
       element.addEventListener('click', (event) => {
         event.preventDefault()
 
@@ -26,11 +26,11 @@ export class Carousel extends WebuumElement {
       }, { signal })
     })
 
-    this.$content.addEventListener('scrollsnapchanging', (event) => {
+    this.$content?.addEventListener('scrollsnapchanging', (event) => {
       setSnappedAttribute(this.$content, event.snapTargetInline ?? event.snapTargetBlock, this.$markerGroup)
     }, { signal })
 
-    this.$content.addEventListener('scroll', () => {
+    this.$content?.addEventListener('scroll', () => {
       toggleScrollState(this.$content, {
         prevElement: this.$prev,
         nextElement: this.$next,
