@@ -1,23 +1,20 @@
 import { dispatchCustomEvent } from '@newlogic-digital/utils-js'
 import { WebuumElement } from 'webuum'
-import { validateField } from 'winduum/src/components/form'
 
 export class Control extends WebuumElement {
-  /**
-   * @type {import('winduum/src/components/form/index.d.ts').ValidateFieldOptions}
-   */
-  $validateFieldOptions
+  $activeAttribute = 'data-active'
 
   connectedCallback() {
-    validateField(this, { validate: false })
+    this.toggleActiveAttribute()
+    this.addEventListener('change', this.toggleActiveAttribute.bind(this), { signal: this.$signal })
+  }
 
-    this.addEventListener('change', () => {
-      const telCountryCode = this.querySelector('[autocomplete="tel-country-code"]')
+  toggleActiveAttribute() {
+    const telCountryCode = this.querySelector('[autocomplete="tel-country-code"]')
 
-      if (telCountryCode) telCountryCode.dataset.value = telCountryCode.value
+    if (telCountryCode) telCountryCode.dataset.value = telCountryCode.value
 
-      validateField(this, this.$validateFieldOptions)
-    }, { signal: this.$signal })
+    this.toggleAttribute(this.$activeAttribute, !!this.querySelector('input:not([type="hidden"]), textarea, select')?.value)
   }
 
   stepUp() {
