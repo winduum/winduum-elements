@@ -13,7 +13,12 @@ export class Toaster extends WebuumElement {
   async connectedCallback() {
     const { toasterObserver } = await import('winduum/src/components/toaster/index.js')
 
-    toasterObserver()
+    this.$observer = toasterObserver()
+    this.$observer.observe(this, { childList: true })
+  }
+
+  disconnectedCallback() {
+    this.$observer?.disconnect()
   }
 
   async close() {
