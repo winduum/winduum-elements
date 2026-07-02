@@ -12,7 +12,7 @@ export class Popover extends WebuumElement {
   connectedCallback() {
     this.addEventListener('toggle', (event) => {
       this.$open = event.newState === 'open'
-      if (this.$source.ariaExpanded) this.$source.ariaExpanded = this.$open
+      if (this.$source?.ariaExpanded) this.$source.ariaExpanded = this.$open
     }, { signal: this.$signal })
   }
 
