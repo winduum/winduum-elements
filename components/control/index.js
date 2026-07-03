@@ -12,7 +12,7 @@ export class Control extends WebuumElement {
   toggleActiveAttribute() {
     const telCountryCode = this.querySelector('[autocomplete="tel-country-code"]')
 
-    if (telCountryCode) telCountryCode.dataset.value = telCountryCode.value
+    if (telCountryCode) telCountryCode.nextElementSibling.textContent = telCountryCode.value
 
     this.toggleAttribute(this.$activeAttribute, !!this.querySelector('input:not([type="hidden"]), textarea, select')?.value)
   }
