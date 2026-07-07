@@ -1,4 +1,4 @@
-# [Control](https://winduum.dev/docs/components/image.html)
+# [Image](https://winduum.dev/docs/components/image.html)
 
 ## Installation
 ```shell
@@ -8,7 +8,7 @@ npm i winduum-elements
 ```js
 import { Image } from 'winduum-elements/components/image/index.js'
 
-customElements.define('x-control', Image)
+customElements.define('x-image', Image(HTMLElement))
 ```
 
 ### Local imports
