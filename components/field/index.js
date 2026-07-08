@@ -1,9 +1,9 @@
 import { WebuumElement } from 'webuum'
-import { validateField } from 'winduum/src/components/form'
+import { validateField } from 'winduum/src/components/field'
 
 export class Field extends WebuumElement {
   /**
-   * @type {import('winduum/src/components/form/index.d.ts').ValidateFieldOptions}
+   * @type {import('winduum/src/components/field/index.d.ts').ValidateFieldOptions}
    */
   $validateFieldOptions
 
