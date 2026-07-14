@@ -1,4 +1,5 @@
 import { WebuumElement } from 'webuum'
+import { showToast, closeToast } from 'winduum/src/components/toast'
 
 /**
  * @typedef {import('winduum/src/components/toast/index.d.ts').ShowToastOptions} ShowOptions
@@ -20,14 +21,10 @@ export class Toast extends WebuumElement {
   }
 
   async show() {
-    const { showToast } = await import('winduum/src/components/toast/index.js')
-
     await showToast(this, this.$showOptions)
   }
 
   async close() {
-    const { closeToast } = await import('winduum/src/components/toast/index.js')
-
     await closeToast(this, this.$closeOptions)
   }
 }
