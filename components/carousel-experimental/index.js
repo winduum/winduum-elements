@@ -14,7 +14,7 @@ export class Carousel extends WebuumElement {
   }
 
   async connectedCallback() {
-    const { scrollToMarker, setSnappedAttribute, toggleScrollState } = await import('winduum/src/components/carousel/index.js')
+    const { scrollToMarker, setSnappedAttribute, toggleScrollState } = await import('winduum/src/components/carousel-experimental/index.js')
 
     const signal = this.$signal
 
@@ -40,7 +40,7 @@ export class Carousel extends WebuumElement {
   }
 
   async $scroll(direction) {
-    const { scrollBy } = await import('winduum/src/components/carousel/index.js')
+    const { scrollBy } = await import('winduum/src/components/carousel-experimental/index.js')
 
     scrollBy(this.$content, {
       direction,
