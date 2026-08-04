@@ -1,6 +1,6 @@
 {
   "name": "winduum-elements",
-  "version": "0.0.15",
+  "version": "0.0.17",
   "type": "module",
   "scripts": {
     "eslint": "eslint",
@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@newlogic-digital/utils-js": "^1.2.0",
-    "winduum": "^3.0.0-next.16",
+    "winduum": "^3.0.0-next.17",
     "webuum": "^0.2.5"
   },
   "devDependencies": {

@@ -1,5 +1,5 @@
 import { WebuumElement } from 'webuum'
-import { supportsAnchoredContainer, supportsAnchor } from 'winduum/src/common.js'
+import { supportsAnchoredContainer, supportsAnchor } from 'winduum/src/supports.js'
 
 export class Popover extends WebuumElement {
   $open = false
