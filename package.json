@@ -15,21 +15,19 @@
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@stylistic/eslint-plugin": "^5.10.0",
-    "eslint": "^10.6.0",
-    "globals": "^17.7.0"
+    "eslint": "^10.8.0",
+    "globals": "^17.9.0"
   },
   "files": [
     "index.js",
-    "components",
-    "utilities"
+    "components"
   ],
   "exports": {
     "./components/*": "./components/*",
-    "./utilities/*": "./utilities/*",
     ".": "./index.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/winduum/winduum-stimulus.git"
+    "url": "git+https://github.com/winduum/winduum-elements.git"
   }
 }

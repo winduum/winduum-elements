@@ -38,7 +38,11 @@ export class Drawer extends HTMLDialogElement {
 
     this.$triggerElement = source
 
-    if (this.open) return
+    if (this.open) {
+      this.requestClose()
+      return
+    }
+
     if (this.$modal) super.showModal()
     else super.show()
 

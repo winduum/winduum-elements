@@ -8,8 +8,8 @@ npm i winduum-elements
 ```js
 import { Button } from 'winduum-elements/components/button/index.js'
 
-customElements.define('x-button', Button, { extends: 'button' })
-customElements.define('x-button--a', Button, { extends: 'a' })
+customElements.define('x-button', Button(HTMLButtonElement), { extends: 'button' })
+customElements.define('x-button--a', Button(HTMLAnchorElement), { extends: 'a' })
 ```
 
 ### Local imports

@@ -6,8 +6,6 @@
 
 # 🎨 [Winduum Elements](https://winduum.dev)
 
-> Very WIP
-
 Ready to use components and utilities for Web
 
 ## Dependencies
@@ -15,7 +13,7 @@ Ready to use components and utilities for Web
 ```json
 {
   "@newlogic-digital/utils-js": "^1",
-  "winduum": "^2"
-  "webuum": "^1"
+  "winduum": "^3",
+  "webuum": "^0.2"
 }
 ```
