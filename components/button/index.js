@@ -1,7 +1,9 @@
 import { defineElement } from 'webuum'
 
 /**
- * @param {CustomElementConstructor} Element
+ * @template {CustomElementConstructor} T
+ * @param {T} Element
+ * @returns {T}
  */
 export const Button = Element =>
   /**

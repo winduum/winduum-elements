@@ -28,6 +28,19 @@ export class Popover extends WebuumElement {
     super.showPopover({ source })
   }
 
+  /**
+   * @overload
+   * @param {TogglePopoverOptions | boolean} [options]
+   * @returns {boolean}
+   */
+  /**
+   * @overload
+   * @param {{source: HTMLElement}} options
+   * @returns {void}
+   */
+  /**
+   * @param {{source: HTMLElement}} options
+   */
   togglePopover({ source }) {
     !this.$open
       ? this.showPopover({ source })

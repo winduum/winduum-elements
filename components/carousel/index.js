@@ -69,6 +69,25 @@ export class Carousel extends WebuumElement {
     this.$content.scroll({ left: this.$content.scrollLeft + this.$content.children[0].offsetWidth })
   }
 
+  /**
+   * @overload
+   * @param {ScrollToOptions} [options]
+   * @returns {void}
+   */
+  /**
+   * @overload
+   * @param {number} x
+   * @param {number} y
+   * @returns {void}
+   */
+  /**
+   * @overload
+   * @param {{source: HTMLElement}} options
+   * @returns {Promise<void>}
+   */
+  /**
+   * @param {{source: HTMLElement}} options
+   */
   async scrollTo({ source }) {
     const { scrollTo } = await import('winduum/src/components/carousel/index.js')
 

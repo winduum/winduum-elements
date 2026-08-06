@@ -1,5 +1,7 @@
 /**
- * @param {CustomElementConstructor} Element
+ * @template {CustomElementConstructor} T
+ * @param {T} Element
+ * @returns {T}
  */
 export const Image = Element => class extends Element {
   connectedCallback() {

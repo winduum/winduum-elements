@@ -1,10 +1,13 @@
 {
   "name": "winduum-elements",
-  "version": "0.0.17",
+  "version": "0.0.19",
   "type": "module",
   "scripts": {
     "eslint": "eslint",
     "eslint-fix": "eslint --fix",
+    "tsc": "tsc",
+    "dts": "node dts.js",
+    "types": "npm run tsc && npm run dts",
     "publish-next": "npm publish --tag next"
   },
   "dependencies": {
@@ -15,14 +18,77 @@
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@stylistic/eslint-plugin": "^5.10.0",
+    "dts-buddy": "^0.8.2",
     "eslint": "^10.8.0",
-    "globals": "^17.9.0"
+    "globals": "^17.9.0",
+    "typescript": "^6"
   },
   "files": [
     "index.js",
-    "components"
+    "components",
+    "types"
   ],
   "exports": {
+    "./components/button/index.js": {
+      "types": "./types/index.d.ts",
+      "default": "./components/button/index.js"
+    },
+    "./components/carousel-experimental/index.js": {
+      "types": "./types/index.d.ts",
+      "default": "./components/carousel-experimental/index.js"
+    },
+    "./components/carousel/index.js": {
+      "types": "./types/index.d.ts",
+      "default": "./components/carousel/index.js"
+    },
+    "./components/compare/index.js": {
+      "types": "./types/index.d.ts",
+      "default": "./components/compare/index.js"
+    },
+    "./components/control/index.js": {
+      "types": "./types/index.d.ts",
+      "default": "./components/control/index.js"
+    },
+    "./components/details/index.js": {
+      "types": "./types/index.d.ts",
+      "default": "./components/details/index.js"
+    },
+    "./components/drawer/index.js": {
+      "types": "./types/index.d.ts",
+      "default": "./components/drawer/index.js"
+    },
+    "./components/field/index.js": {
+      "types": "./types/index.d.ts",
+      "default": "./components/field/index.js"
+    },
+    "./components/form/index.js": {
+      "types": "./types/index.d.ts",
+      "default": "./components/form/index.js"
+    },
+    "./components/image/index.js": {
+      "types": "./types/index.d.ts",
+      "default": "./components/image/index.js"
+    },
+    "./components/popover/index.js": {
+      "types": "./types/index.d.ts",
+      "default": "./components/popover/index.js"
+    },
+    "./components/range/index.js": {
+      "types": "./types/index.d.ts",
+      "default": "./components/range/index.js"
+    },
+    "./components/tabs/index.js": {
+      "types": "./types/index.d.ts",
+      "default": "./components/tabs/index.js"
+    },
+    "./components/toast/index.js": {
+      "types": "./types/index.d.ts",
+      "default": "./components/toast/index.js"
+    },
+    "./components/toaster/index.js": {
+      "types": "./types/index.d.ts",
+      "default": "./components/toaster/index.js"
+    },
     "./components/*": "./components/*",
     ".": "./index.js"
   },

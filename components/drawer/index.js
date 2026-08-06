@@ -33,6 +33,18 @@ export class Drawer extends HTMLDialogElement {
     }
   }
 
+  /**
+   * @overload
+   * @returns {void}
+   */
+  /**
+   * @overload
+   * @param {{source: HTMLElement}} options
+   * @returns {Promise<void>}
+   */
+  /**
+   * @param {{source: HTMLElement}} options
+   */
   async showModal({ source }) {
     const { showDrawer } = await import('winduum/src/components/drawer/index.js')
 
